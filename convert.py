@@ -360,16 +360,17 @@ class FileParser(object):
             function_declaration += ')\n'
             confirmation = 'y'
             if UnObsolizer.prompt_confirmation:
-                print('Replace?\n')
+                print('\nReplace?\n')
                 for al in self.accumulated_lines:
                     print(al.rstrip('\n'))
                 print('--with--')
                 print(function_declaration)
-                confirmation = input('y/n [y]')
+                confirmation = input('y/n [y] ')
             if confirmation is 'n':
-                self.output_file.write(self.function_ret_type)
+                # self.output_file.write(self.function_ret_type)
                 self.output_file.writelines(self.accumulated_lines)
             else:
+                self.output_file.write(self.function_ret_type)
                 self.output_file.write(function_declaration)
                 if self.function_is_global:
                     UnObsolizer.global_function_dict[self.function_name] = self.function_args

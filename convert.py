@@ -280,7 +280,7 @@ class FileParser(object):
         function_args_count: set to the expected number of arguments
         """
         func_name_match = re.search(FileParser.function_name_re, line)
-        if func_name_match:
+        if func_name_match and line.strip()[:2] != 'if':
             self.accumulated_lines.append(line)
 
             # Grab expected number of arguments
